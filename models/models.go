@@ -17,17 +17,6 @@ type Model struct {
 	ModifiedOn int `json:"modified_on"`
 }
 
-type Tag struct {
-	Model
-
-	Name       string `json:"name"`
-	CreatedBy  string `json:"created_by"`
-	ModifiedBy string `json:"modified_by"`
-	State      int    `json:"state"`
-}
-
-
-
 func init() {
 	var (
 		err                                               error
@@ -64,16 +53,4 @@ func init() {
 // CloseDB 关闭数据库连接
 func CloseDB() {
 	defer db.Close()
-}
-
-
-func GetTags(pageNum int, pageSize int, maps interface{}) (tags []Tag) {
-	db.Where(maps).Offset(pageNume).Limit(pageSize).Find(&tag)
-	return
-
-}
-
-func GetTagTotal(map interface{}) (count int){
-	db.Model(&Tag{}).Where(maps).Count(&count)
-	return
 }
